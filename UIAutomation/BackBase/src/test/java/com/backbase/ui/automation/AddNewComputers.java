@@ -2,6 +2,7 @@ package com.backbase.ui.automation;
 
 import java.io.IOException;
 
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
@@ -32,8 +33,8 @@ public class AddNewComputers extends Setup {
 	}
 
 	@Test // Verify that the system allows to Create new computer
-	public void verifySystemAllowsToCreateNewComputer() throws InterruptedException {
-		
+	public void verifySystemAllowsToCreateNewComputer() throws InterruptedException
+	{
 		homePage.getAddComputerbtn().click();	// Click on Add a new computer button 
 		//Set Computer information
 		addComputerPage.getComputerNameField().sendKeys("VK_Computer1");
@@ -42,8 +43,9 @@ public class AddNewComputers extends Setup {
 		Select companyComboBox = new Select (addComputerPage.getCompanyCombo());
 		companyComboBox.selectByValue("2");
 		addComputerPage.getCreateComputerBtn().click();	// Click on Create This computer button 
-
-		Assert.assertEquals(homePage.getCreateComputerAlert().getText(), "Done! Computer VK_Computer1 has been created"); // Assert the alert message 
+		
+		// Assert the alert message
+		Assert.assertEquals(homePage.getCreateComputerAlert().getText(), "Done! Computer VK_Computer1 has been created");  
 	}
 
 	
@@ -108,4 +110,27 @@ public class AddNewComputers extends Setup {
 		Assert.assertEquals(addComputerPage.getdiscontinuedDateWrapper().getAttribute("class"), "clearfix error"); // Assert the error class
 	}
 	
+	@Test //Verify that the Added Computer details are available in the table
+	public void verifyThatAddedDetailsAreAvailableInTable ()
+	{
+		homePage.getAddComputerbtn().click();	// Click on Add a new computer button 
+		
+		//Set Computer information to add a computer 
+		addComputerPage.getComputerNameField().sendKeys("VK_Computer5");
+		addComputerPage.getIntroduceDateField().sendKeys("2018-01-01");
+		addComputerPage.getDiscontinuedDateField().sendKeys("2019-01-01");
+		Select companyComboBox = new Select (addComputerPage.getCompanyCombo());
+		companyComboBox.selectByValue("1");
+		String companyName =companyComboBox.getOptions().get(1).getText(); // Get company name to a variable
+		addComputerPage.getCreateComputerBtn().click();	// Click on Create This computer button 
+		
+		// Search for the created record
+		homePage.getSesrchField().sendKeys("VK_Computer5");	// Set value to search field 
+		homePage.getFilterByNameButton().click(); //Click on Find by name button 
+		Assert.assertEquals(homePage.getFirstDataOfTable().getText(), "VK_Computer5");// Assert the computer name
+		Assert.assertEquals(homePage.getFirstRowSecondColData().getText(), "01 Jan 2018");// Assert the IntroduceDate
+		Assert.assertEquals(homePage.getFirstRowThirdColData().getText(), "01 Jan 2019");// Assert the DiscontinuedDate
+		Assert.assertEquals(homePage.getFirstRowForthColData().getText(), companyName); // Assert the Company name
+	
+	}
 }

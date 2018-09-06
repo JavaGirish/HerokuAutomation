@@ -75,7 +75,7 @@ public class EditComputer extends Setup
 		homePage.getAddComputerbtn().click();	// Click on Add a new computer button 
 		
 		//Set Computer information to add a computer 
-		addComputerPage.getComputerNameField().sendKeys("VK_Computer4");
+		addComputerPage.getComputerNameField().sendKeys("VK_Computer_ToDelete");
 		addComputerPage.getIntroduceDateField().sendKeys("2018-02-01");
 		addComputerPage.getDiscontinuedDateField().sendKeys("2019-02-01");
 		Select companyComboBox = new Select (addComputerPage.getCompanyCombo());
@@ -83,7 +83,7 @@ public class EditComputer extends Setup
 		addComputerPage.getCreateComputerBtn().click();	// Click on Create This computer button 
 		
 		// Search for the created record
-		homePage.getSesrchField().sendKeys("VK_Computer4");	// Set value to search field 
+		homePage.getSesrchField().sendKeys("VK_Computer_ToDelete");	// Set value to search field 
 		homePage.getFilterByNameButton().click(); //Click on Find by name button 
 		homePage.getFirstDataOfTable().click(); // Click on the computer name
 				
@@ -92,14 +92,30 @@ public class EditComputer extends Setup
 		
 		Assert.assertEquals(homePage.getCreateComputerAlert().getText(), "Done! Computer has been deleted"); // Assert the alert message after Delete 
 		
+		// Search for the created record
+		homePage.getSesrchField().sendKeys("VK_Computer_ToDelete");	// Set value to search field 
+		homePage.getFilterByNameButton().click(); //Click on Find by name button 
+		Assert.assertEquals(homePage.getNoDataDisplatAlert().getText(), "Nothing to display"); // Assert the message alert 
 	}
-	
-	
+		
 	
 	@Test // Check that "Edit Computer" Label is displayed 
 	public void checkEditComputerLabel ()
 	{
-		// Click on a computer
+		homePage.getAddComputerbtn().click();	// Click on Add a new computer button 
+		
+		//Set Computer information to add a computer 
+		addComputerPage.getComputerNameField().sendKeys("VK_Computer5");
+		addComputerPage.getIntroduceDateField().sendKeys("2018-01-01");
+		addComputerPage.getDiscontinuedDateField().sendKeys("2019-01-01");
+		Select companyComboBox = new Select (addComputerPage.getCompanyCombo());
+		companyComboBox.selectByValue("1");
+		addComputerPage.getCreateComputerBtn().click();	// Click on Create This computer button 
+		
+		// Search for the created record
+		homePage.getSesrchField().sendKeys("VK_Computer5");	// Set value to search field 
+		homePage.getFilterByNameButton().click(); //Click on Find by name button 
+		homePage.getFirstDataOfTable().click(); // Click on the computer name
 		Assert.assertEquals(editComputerPage.getEditComputerLabel().getText(), "Edit computer"); // Assert the Label name
 	}
 	
@@ -157,6 +173,5 @@ public class EditComputer extends Setup
 		editComputerPage.getSaveComputer().click(); // Save the record by removing the name
 		
 		Assert.assertEquals(editComputerPage.getComputerFieldWrapper().getAttribute("class"), "clearfix error"); // Assert the error class
-
 	}
 }

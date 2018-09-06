@@ -25,6 +25,10 @@ private By tblLblDiscontinued =By.xpath(".//*[@id=\"main\"]/table/thead/tr/th[3]
 private By tblLblCompany =By.xpath(".//*[@id=\"main\"]/table/thead/tr/th[4]/a");
 private By createComputerAlert = By.xpath(".//*[@id=\"main\"]/div[1]");
 private By firstRowFirstColumndata = By.xpath(".//*[@id=\"main\"]/table/tbody/tr[1]/td[1]/a");
+private By firstRowSecondColumndata =By.xpath("//*[@id=\"main\"]/table/tbody/tr[1]/td[2]");
+private By firstRowThirdColumndata =By.xpath("//*[@id=\"main\"]/table/tbody/tr[1]/td[3]");
+private By firstRowForthColumndata =By.xpath("//*[@id=\"main\"]/table/tbody/tr[1]/td[4]");
+private By lblNoDataToDisplay =By.xpath("//*[@id=\"main\"]/div[2]/em");
 
 
 public WebElement getAddComputerbtn ()
@@ -76,4 +80,25 @@ public WebElement getFirstDataOfTable ()
 {
 return driver.findElement(firstRowFirstColumndata);
 }
+
+public WebElement getFirstRowSecondColData ()
+{
+	return driver.findElement(firstRowSecondColumndata);
+}
+
+public WebElement getFirstRowThirdColData ()
+{
+	return driver.findElement(firstRowThirdColumndata);
+}
+
+public WebElement getFirstRowForthColData ()
+{
+	return driver.findElement(firstRowForthColumndata);
+}
+
+public WebElement getNoDataDisplatAlert ()
+{
+	return driver.findElement(lblNoDataToDisplay);
+}
+
 }

@@ -34,11 +34,11 @@ public void loadHomePage() throws IOException
 @AfterMethod
 public void closeTheBrowser () throws InterruptedException
 {
-	Thread.sleep(10000);
+	Thread.sleep(3000);
 	driver.close();
 }
 
-@Test // Verify that Add a new Computer button is Enabled 
+@Test // Verify that the Add a new Computer button is Enabled 
 public void verifyAddNewComputerButtonIsEnabled()
 {
 	Assert.assertEquals(homePage.getAddComputerbtn().isDisplayed(), true); // Assert that Add a new computer button is displayed
@@ -77,8 +77,14 @@ public void verifyAvailableComputerName()
 	homePage.getFilterByNameButton().click(); //Click on Find by name button 
 	
 	Assert.assertEquals(homePage.getFirstDataOfTable().getText(), "VK_Computer6"); // Assert that searched computer is available 
-	
 }
 
+@Test // Verify the Filter with not existing date 
+public void veryForNotExistingDate()
+{
+			homePage.getSesrchField().sendKeys("No Computer with This name");	// Set value to search field 
+			homePage.getFilterByNameButton().click(); //Click on Find by name button 
+			Assert.assertEquals(homePage.getNoDataDisplatAlert().getText(), "Nothing to display"); // Assert the message alert 
+}
 
 }
