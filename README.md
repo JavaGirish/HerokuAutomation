@@ -15,4 +15,4 @@ Web elements for different pages available in different clasess.
 
 Test cases from different functional areas available in the AddNewComputers, EditComputer, and HomePageValidations class files. 
 
-All the required dependencies included in POM file. 
+All the required dependencies are included in POM file. 
