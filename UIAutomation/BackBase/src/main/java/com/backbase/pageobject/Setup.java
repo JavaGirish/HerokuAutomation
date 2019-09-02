@@ -31,7 +31,7 @@ public WebDriver initializeDriver () throws IOException
 		System.setProperty("webdriver.gecko.driver", "src\\main\\resources\\geckodriver.exe"); 
 		driver = new FirefoxDriver();
 	}
-	
+	driver.manage().window().maximize();
 	driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);	// Wait to load the browser 
 	return driver;
 }
