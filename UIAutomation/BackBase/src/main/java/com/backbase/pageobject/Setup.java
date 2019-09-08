@@ -32,7 +32,8 @@ public WebDriver initializeDriver () throws IOException
 		driver = new FirefoxDriver();
 	}
 	driver.manage().window().maximize();
-	driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);	// Wait to load the browser 
+	driver.manage().timeouts().pageLoadTimeout(4, TimeUnit.MINUTES);
+	driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);	// Wait to load the browser 
 	return driver;
 }
 

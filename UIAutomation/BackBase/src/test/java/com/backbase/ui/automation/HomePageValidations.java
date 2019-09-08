@@ -79,7 +79,7 @@ public void verifyAvailableComputerName()
 	Assert.assertEquals(homePage.getFirstDataOfTable().getText(), "VK_Computer6"); // Assert that searched computer is available 
 }
 
-@Test // Verify the Filter with not existing date 
+@Test(enabled=false) // Verify the Filter with not existing date 
 public void veryForNotExistingDate()
 {
 			homePage.getSesrchField().sendKeys("No Computer with This name");	// Set value to search field 

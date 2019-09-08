@@ -119,7 +119,7 @@ public class EditComputer extends Setup
 		Assert.assertEquals(editComputerPage.getEditComputerLabel().getText(), "Edit computer"); // Assert the Label name
 	}
 	
-	@Test	// Verify that no changes to the data when click on cancel button 
+	@Test(enabled=false)	// Verify that no changes to the data when click on cancel button 
 	public void verifyThatNoChangesToDataWhenClickOnCancel ()
 	{
 		homePage.getAddComputerbtn().click();	// Click on Add a new computer button 
